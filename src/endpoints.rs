@@ -62,7 +62,7 @@ pub async fn get_datasite_states(
     Ok(result)
 }
 
-async fn get_remote_state(
+pub async fn get_remote_state(
     client: &Client,
     path: &Path,
 ) -> Result<Vec<FileMetadata>, SyftServerError> {
@@ -78,7 +78,7 @@ async fn get_remote_state(
     Ok(metadata_list)
 }
 
-async fn get_metadata(client: &Client, path: &Path) -> Result<FileMetadata, SyftServerError> {
+pub async fn get_metadata(client: &Client, path: &Path) -> Result<FileMetadata, SyftServerError> {
     let response = client
         .post("/sync/get_metadata")
         .json(&serde_json::json!({ "path_like": path.to_str().unwrap() }))
@@ -91,7 +91,7 @@ async fn get_metadata(client: &Client, path: &Path) -> Result<FileMetadata, Syft
     Ok(metadata)
 }
 
-async fn get_diff(
+pub async fn get_diff(
     client: &Client,
     path: &Path,
     signature: &[u8],
@@ -111,7 +111,7 @@ async fn get_diff(
     Ok(diff_response)
 }
 
-async fn apply_diff(
+pub async fn apply_diff(
     client: &Client,
     path: &Path,
     diff: &[u8],

@@ -2,7 +2,7 @@ use reqwest::Error as ReqwestError;
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Eq, Hash, Clone)]
 pub struct FileMetadata {
     pub path: String,
     pub hash: String,
